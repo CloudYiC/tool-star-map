@@ -252,14 +252,14 @@ function App() {
       </header>
 
       <main className={styles.launchLayout}>
-        <section className={styles.heroDeck} aria-label="工具库搜索">
-          <div className={styles.heroCopy}>
-            <p className={styles.eyebrow}>CURATED TOOL LAUNCHER</p>
-            <h1>选择工具前，先看清它适合做什么。</h1>
-            <p>{siteConfig.tagline}</p>
+        <section className={styles.commandDeck} aria-label="工具控制台">
+          <div className={styles.commandIntro}>
+            <p className={styles.eyebrow}>TOOL CONTROL</p>
+            <h1>工具库</h1>
+            <p>输入工具名、标签或使用场景，先看详情，再决定是否跳转。</p>
           </div>
 
-          <div className={styles.controlPad}>
+          <div className={styles.commandMain}>
             <div className={styles.searchBox}>
               <Search size={20} />
               <input
@@ -270,47 +270,48 @@ function App() {
                 aria-label="搜索工具"
               />
             </div>
-            <div className={styles.statsStrip} aria-label="站点统计">
+
+            <div className={styles.metricRow} aria-label="站点统计">
               {stats.map((item) => (
-                <div key={item.label} className={styles.statItem}>
+                <div key={item.label} className={styles.metricItem}>
                   <strong>{item.value}</strong>
                   <span>{item.label}</span>
                 </div>
               ))}
             </div>
           </div>
-        </section>
 
-        <section className={styles.filterDeck} aria-label="工具筛选">
-          <div className={styles.categoryStrip}>
-            {[...typedCategories, { id: 'favorites', label: '本地收藏' } satisfies Category].map((item) => {
-              const Icon = categoryIcons[item.id];
-              return (
+          <div className={styles.filterRail} aria-label="工具筛选">
+            <div className={styles.categoryStrip}>
+              {[...typedCategories, { id: 'favorites', label: '本地收藏' } satisfies Category].map((item) => {
+                const Icon = categoryIcons[item.id];
+                return (
+                  <button
+                    key={item.id}
+                    className={cx(category === item.id && styles.active)}
+                    type="button"
+                    onClick={() => selectCategory(item.id)}
+                  >
+                    <Icon size={17} />
+                    <span>{item.label}</span>
+                  </button>
+                );
+              })}
+            </div>
+
+            <div className={styles.tagCloud}>
+              {tagCounts.map(([tag, count]) => (
                 <button
-                  key={item.id}
-                  className={cx(category === item.id && styles.active)}
+                  key={tag}
+                  className={cx(activeTag === tag && styles.active)}
                   type="button"
-                  onClick={() => selectCategory(item.id)}
+                  onClick={() => setActiveTag(activeTag === tag ? '' : tag)}
                 >
-                  <Icon size={17} />
-                  <span>{item.label}</span>
+                  #{tag}
+                  <span>{count}</span>
                 </button>
-              );
-            })}
-          </div>
-
-          <div className={styles.tagCloud}>
-            {tagCounts.map(([tag, count]) => (
-              <button
-                key={tag}
-                className={cx(activeTag === tag && styles.active)}
-                type="button"
-                onClick={() => setActiveTag(activeTag === tag ? '' : tag)}
-              >
-                #{tag}
-                <span>{count}</span>
-              </button>
-            ))}
+              ))}
+            </div>
           </div>
         </section>
 
