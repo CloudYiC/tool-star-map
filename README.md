@@ -1,15 +1,16 @@
-# 工具星图
+# 工具发射台
 
 一个公开的常用网站与工具导航站，使用 React 18 + Vite 实现。它适合部署到 Cloudflare Pages、Vercel、Netlify，也可以构建后迁移到自己的服务器或域名。
 
 ## 功能
 
-- 星图视图和列表视图
+- 清晰的工具列表和详情确认跳转
 - 关键词搜索、分类筛选、热门标签筛选
 - 暗色 / 浅色主题切换，自动保存到浏览器
 - 本地收藏，收藏结果只保存在访客自己的浏览器
 - 最近访问记录，记录结果只保存在访客自己的浏览器
 - 提交推荐面板，默认复制推荐内容；配置邮箱后可直接发邮件
+- 点击工具后弹出详情卡片，确认后再跳转
 
 ## 本地运行
 
@@ -41,7 +42,7 @@ npm run dev
 }
 ```
 
-`category` 需要使用 `ai`、`dev`、`design`、`productivity`、`learn`、`life` 中的一个。`map.x` 和 `map.y` 控制星图节点位置，范围是 0 到 100。
+`category` 需要使用 `ai`、`dev`、`design`、`productivity`、`learn`、`life` 中的一个。
 
 ## 配置提交推荐
 
@@ -49,7 +50,7 @@ npm run dev
 
 ```js
 export const siteConfig = {
-  name: '工具星图',
+  name: '工具发射台',
   tagline: '...',
   recommendationEmail: 'you@example.com'
 };

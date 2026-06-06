@@ -1,6 +1,6 @@
 {
-  "name": "工具星图",
-  "short_name": "工具星图",
+  "name": "工具发射台",
+  "short_name": "工具发射台",
   "description": "公开的常用网站与工具导航站",
   "start_url": "/",
   "display": "standalone",
