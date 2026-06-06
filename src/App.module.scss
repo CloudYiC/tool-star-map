@@ -20,6 +20,17 @@
   background: color-mix(in srgb, var(--surface-solid) 82%, transparent);
   box-shadow: var(--shadow);
   backdrop-filter: blur(18px);
+
+  &::before {
+    position: absolute;
+    right: 70px;
+    left: 70px;
+    bottom: -1px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+    content: '';
+    opacity: 0.45;
+  }
 }
 
 .brand {
@@ -131,19 +142,50 @@
 }
 
 .commandDeck {
+  position: relative;
   display: grid;
-  grid-template-columns: minmax(220px, 0.42fr) minmax(0, 1fr);
-  gap: 14px 22px;
-  min-height: 196px;
-  padding: 18px;
+  gap: 16px;
+  min-height: 260px;
+  padding: 24px;
   border: 1px solid var(--border);
   border-radius: var(--radius);
   background:
-    linear-gradient(120deg, rgba(92, 240, 210, 0.16), transparent 34%),
-    linear-gradient(30deg, transparent 66%, rgba(246, 196, 95, 0.1)),
+    linear-gradient(115deg, rgba(92, 240, 210, 0.2), transparent 38%),
+    linear-gradient(28deg, transparent 58%, rgba(246, 196, 95, 0.12)),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.05), transparent 44%),
     color-mix(in srgb, var(--surface-solid) 72%, transparent);
   box-shadow: var(--shadow);
   overflow: hidden;
+
+  &::before {
+    position: absolute;
+    inset: 0;
+    border-top: 2px solid color-mix(in srgb, var(--cyan) 72%, transparent);
+    content: '';
+    pointer-events: none;
+  }
+
+  &::after {
+    position: absolute;
+    right: 24px;
+    bottom: 24px;
+    width: 180px;
+    height: 180px;
+    border: 1px solid rgba(92, 240, 210, 0.12);
+    border-radius: 50%;
+    content: '';
+    opacity: 0.55;
+    pointer-events: none;
+  }
+}
+
+.commandTop {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(360px, 1fr) minmax(360px, 0.72fr);
+  gap: 22px;
+  align-items: stretch;
 }
 
 .commandIntro {
@@ -153,16 +195,16 @@
 
   h1 {
     margin: 0;
-    font-size: clamp(30px, 3vw, 44px);
-    line-height: 1.08;
+    font-size: clamp(44px, 5vw, 74px);
+    line-height: 0.98;
   }
 
   p:not(.eyebrow) {
-    max-width: 420px;
-    margin: 10px 0 0;
+    max-width: 660px;
+    margin: 16px 0 0;
     color: var(--muted);
-    font-size: 14px;
-    line-height: 1.7;
+    font-size: 16px;
+    line-height: 1.8;
   }
 }
 
@@ -174,9 +216,12 @@
   letter-spacing: 0;
 }
 
-.commandMain {
+.commandSearchRow {
+  position: relative;
+  z-index: 1;
   display: grid;
-  align-content: stretch;
+  grid-template-columns: minmax(0, 1fr) 132px;
+  align-items: stretch;
   gap: 12px;
   min-width: 0;
 }
@@ -185,8 +230,8 @@
   display: grid;
   grid-template-columns: 28px minmax(0, 1fr);
   align-items: center;
-  min-height: 58px;
-  padding: 0 18px;
+  min-height: 64px;
+  padding: 0 20px;
   border: 1px solid var(--border-strong);
   border-radius: var(--radius);
   background:
@@ -209,19 +254,21 @@
   }
 }
 
-.metricRow {
+.metricBoard {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 8px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
 }
 
 .metricItem {
   min-width: 0;
-  min-height: 58px;
-  padding: 10px 12px;
+  min-height: 86px;
+  padding: 16px;
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  background: color-mix(in srgb, var(--surface) 78%, transparent);
+  background:
+    linear-gradient(135deg, rgba(92, 240, 210, 0.1), transparent 48%),
+    color-mix(in srgb, var(--surface) 82%, transparent);
 
   strong,
   span {
@@ -233,17 +280,40 @@
 
   strong {
     color: var(--cyan);
-    font-size: 22px;
+    font-size: 32px;
   }
 
   span {
-    margin-top: 3px;
+    margin-top: 8px;
     color: var(--muted);
-    font-size: 12px;
+    font-size: 13px;
+  }
+}
+
+.commandBadge {
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  min-width: 0;
+  border: 1px solid rgba(246, 196, 95, 0.26);
+  border-radius: var(--radius);
+  background: rgba(246, 196, 95, 0.08);
+  color: var(--amber);
+
+  span {
+    font-size: 11px;
+    font-weight: 800;
+  }
+
+  strong {
+    margin-top: 4px;
+    font-size: 24px;
   }
 }
 
 .filterRail {
+  position: relative;
+  z-index: 1;
   grid-column: 1 / -1;
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(320px, 0.85fr);
@@ -358,7 +428,7 @@
 
   h2 {
     margin: 0;
-    font-size: 30px;
+    font-size: 32px;
   }
 
   > span {
@@ -374,6 +444,7 @@
 }
 
 .toolCard {
+  position: relative;
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
   gap: 12px;
@@ -385,13 +456,28 @@
     linear-gradient(135deg, rgba(92, 240, 210, 0.08), transparent 44%),
     var(--surface);
   box-shadow: 0 18px 46px rgba(0, 0, 0, 0.14);
+  overflow: hidden;
   transition:
     border-color 160ms ease,
     transform 160ms ease,
     background 160ms ease;
 
+  &::before {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--cyan), transparent 60%, var(--amber));
+    content: '';
+    opacity: 0.5;
+  }
+
   &:hover {
     border-color: var(--border-strong);
+    box-shadow:
+      0 18px 46px rgba(0, 0, 0, 0.16),
+      0 0 0 1px rgba(92, 240, 210, 0.08);
     transform: translateY(-2px);
   }
 }
@@ -525,7 +611,9 @@
 .panel {
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  background: var(--surface);
+  background:
+    linear-gradient(145deg, rgba(92, 240, 210, 0.07), transparent 44%),
+    var(--surface);
   overflow: hidden;
 }
 
@@ -710,6 +798,8 @@
 }
 
 .launchBackdrop {
+  justify-items: end;
+  padding: 0;
   background:
     linear-gradient(rgba(92, 240, 210, 0.08) 1px, transparent 1px),
     linear-gradient(90deg, rgba(92, 240, 210, 0.06) 1px, transparent 1px),
@@ -717,27 +807,26 @@
   background-size: 28px 28px;
 }
 
-.launchDialog {
+.launchDrawer {
   display: grid;
-  grid-template-columns: 330px minmax(0, 520px);
-  gap: 20px;
-  width: min(900px, 100%);
-  min-height: 440px;
-  padding: 20px;
-  border: 1px solid var(--border-strong);
-  border-radius: var(--radius);
+  grid-template-rows: auto minmax(0, 1fr);
+  gap: 18px;
+  width: min(560px, 100%);
+  height: 100vh;
+  padding: 22px;
+  border-left: 1px solid var(--border-strong);
   background:
-    linear-gradient(135deg, rgba(92, 240, 210, 0.16), transparent 46%),
+    linear-gradient(145deg, rgba(92, 240, 210, 0.18), transparent 42%),
+    linear-gradient(25deg, transparent 64%, rgba(246, 196, 95, 0.1)),
     var(--surface-solid);
   box-shadow: var(--shadow);
-  overflow: hidden;
+  overflow-y: auto;
+  animation: drawerSlideIn 280ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
 }
 
-.mascotScene {
+.drawerMascot {
   position: relative;
-  display: grid;
-  align-content: end;
-  min-height: 400px;
+  min-height: 178px;
   border: 1px solid var(--border);
   border-radius: var(--radius);
   background:
@@ -747,9 +836,9 @@
 
   &::after {
     position: absolute;
-    right: 28px;
-    bottom: 34px;
-    left: 28px;
+    right: 22px;
+    bottom: 20px;
+    left: 22px;
     height: 10px;
     border-radius: 999px;
     background: rgba(0, 0, 0, 0.22);
@@ -759,11 +848,11 @@
 
 .mascot {
   position: absolute;
-  bottom: 44px;
-  left: 92px;
-  width: 92px;
-  height: 190px;
-  animation: popIn 260ms ease-out both;
+  right: 28px;
+  bottom: 28px;
+  width: 78px;
+  height: 142px;
+  animation: mascotSlideIn 420ms 120ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
 }
 
 .mascotHead,
@@ -776,9 +865,9 @@
 
 .mascotHead {
   top: 0;
-  left: 24px;
-  width: 48px;
-  height: 48px;
+  left: 21px;
+  width: 42px;
+  height: 42px;
   border: 3px solid #06100d;
   border-radius: 50%;
   background: var(--amber);
@@ -804,18 +893,18 @@
 }
 
 .mascotBody {
-  top: 52px;
-  left: 20px;
-  width: 58px;
-  height: 76px;
+  top: 46px;
+  left: 17px;
+  width: 52px;
+  height: 62px;
   border: 3px solid #06100d;
   border-radius: 18px 18px 8px 8px;
   background: linear-gradient(135deg, var(--cyan), var(--green));
 }
 
 .mascotArm {
-  top: 68px;
-  width: 52px;
+  top: 60px;
+  width: 46px;
   height: 10px;
   border: 3px solid #06100d;
   border-radius: 999px;
@@ -834,9 +923,9 @@
 }
 
 .mascotLeg {
-  top: 124px;
+  top: 104px;
   width: 12px;
-  height: 58px;
+  height: 40px;
   border: 3px solid #06100d;
   border-radius: 999px;
   background: #effffb;
@@ -859,22 +948,22 @@
 
 .mascotSign {
   position: absolute;
-  top: 48px;
-  right: 24px;
-  left: 24px;
+  top: 24px;
+  right: 136px;
+  left: 22px;
   display: grid;
   gap: 6px;
-  min-height: 118px;
-  padding: 18px;
+  min-height: 96px;
+  padding: 16px;
   border: 3px solid #06100d;
   border-radius: var(--radius);
   background: linear-gradient(135deg, #fff6cf, #ffe29b);
   color: #1a180f;
   box-shadow: 0 16px 36px rgba(0, 0, 0, 0.24);
-  animation: signIn 320ms ease-out both;
+  animation: signSlideIn 420ms 70ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
 
   strong {
-    font-size: 24px;
+    font-size: 22px;
   }
 
   span {
@@ -947,27 +1036,37 @@
   margin-bottom: 4px;
 }
 
-@keyframes popIn {
+@keyframes drawerSlideIn {
   from {
-    opacity: 0;
-    transform: translateY(24px) scale(0.9);
+    transform: translateX(100%);
   }
 
   to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
+    transform: translateX(0);
   }
 }
 
-@keyframes signIn {
+@keyframes mascotSlideIn {
   from {
     opacity: 0;
-    transform: translateY(-14px) rotate(-2deg);
+    transform: translateX(72px);
   }
 
   to {
     opacity: 1;
-    transform: translateY(0) rotate(0);
+    transform: translateX(0);
+  }
+}
+
+@keyframes signSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(46px) rotate(-1deg);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0) rotate(0);
   }
 }
 
@@ -995,23 +1094,24 @@
     padding: 16px;
   }
 
-  .metricRow {
+  .commandTop {
+    grid-template-columns: 1fr;
+  }
+
+  .metricBoard {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .launchDialog {
-    grid-template-columns: 1fr;
-    max-height: calc(100vh - 36px);
-    overflow: auto;
+  .launchDrawer {
+    width: min(520px, 100%);
   }
 
-  .mascotScene {
-    min-height: 250px;
+  .drawerMascot {
+    min-height: 178px;
   }
 
   .mascot {
-    left: 38%;
-    transform: translateX(-50%);
+    right: 24px;
   }
 }
 
@@ -1132,7 +1232,15 @@
     min-height: 56px;
   }
 
-  .metricRow {
+  .commandSearchRow {
+    grid-template-columns: 1fr;
+  }
+
+  .commandBadge {
+    min-height: 54px;
+  }
+
+  .metricBoard {
     gap: 8px;
   }
 

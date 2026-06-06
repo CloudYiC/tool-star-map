@@ -253,13 +253,24 @@ function App() {
 
       <main className={styles.launchLayout}>
         <section className={styles.commandDeck} aria-label="工具控制台">
-          <div className={styles.commandIntro}>
-            <p className={styles.eyebrow}>TOOL CONTROL</p>
-            <h1>工具库</h1>
-            <p>输入工具名、标签或使用场景，先看详情，再决定是否跳转。</p>
+          <div className={styles.commandTop}>
+            <div className={styles.commandIntro}>
+              <p className={styles.eyebrow}>ENTERPRISE TOOL HUB</p>
+              <h1>工具发射台</h1>
+              <p>{siteConfig.tagline}</p>
+            </div>
+
+            <div className={styles.metricBoard} aria-label="站点统计">
+              {stats.map((item) => (
+                <div key={item.label} className={styles.metricItem}>
+                  <strong>{item.value}</strong>
+                  <span>{item.label}</span>
+                </div>
+              ))}
+            </div>
           </div>
 
-          <div className={styles.commandMain}>
+          <div className={styles.commandSearchRow}>
             <div className={styles.searchBox}>
               <Search size={20} />
               <input
@@ -270,14 +281,9 @@ function App() {
                 aria-label="搜索工具"
               />
             </div>
-
-            <div className={styles.metricRow} aria-label="站点统计">
-              {stats.map((item) => (
-                <div key={item.label} className={styles.metricItem}>
-                  <strong>{item.value}</strong>
-                  <span>{item.label}</span>
-                </div>
-              ))}
+            <div className={styles.commandBadge} aria-hidden="true">
+              <span>LIVE INDEX</span>
+              <strong>{filteredTools.length}</strong>
             </div>
           </div>
 
@@ -516,13 +522,17 @@ function LaunchDialog({ tool, favorite, onFavorite, onCancel, onConfirm }: Launc
   return (
     <div className={cx(styles.dialogBackdrop, styles.launchBackdrop)} role="presentation" onMouseDown={onCancel}>
       <section
-        className={styles.launchDialog}
+        className={styles.launchDrawer}
         role="dialog"
         aria-modal="true"
         aria-labelledby="launch-title"
         onMouseDown={(event) => event.stopPropagation()}
       >
-        <div className={styles.mascotScene} aria-hidden="true">
+        <div className={styles.drawerMascot} aria-hidden="true">
+          <div className={styles.mascotSign}>
+            <strong>确定要跳转吗？</strong>
+            <span>我先帮你确认一下目的地。</span>
+          </div>
           <div className={styles.mascot}>
             <span className={styles.mascotHead} />
             <span className={styles.mascotBody} />
@@ -530,10 +540,6 @@ function LaunchDialog({ tool, favorite, onFavorite, onCancel, onConfirm }: Launc
             <span className={cx(styles.mascotArm, styles.right)} />
             <span className={cx(styles.mascotLeg, styles.left)} />
             <span className={cx(styles.mascotLeg, styles.right)} />
-          </div>
-          <div className={styles.mascotSign}>
-            <strong>确定要跳转吗？</strong>
-            <span>我先帮你确认一下目的地。</span>
           </div>
         </div>
 

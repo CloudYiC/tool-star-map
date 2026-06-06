@@ -1,6 +1,6 @@
 export const siteConfig = {
   name: '工具发射台',
-  tagline: '把高频网站和效率工具整理成一个清晰、可搜索、可收藏的公开工具库。',
+  tagline: '把高频网站和效率工具整理成一个清晰、可搜索、可收藏、可迁移的公开工具库。',
   recommendationEmail: ''
 };
 
