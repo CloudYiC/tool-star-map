@@ -1,0 +1,9 @@
+{
+  "name": "工具星图",
+  "short_name": "工具星图",
+  "description": "公开的常用网站与工具导航站",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#071111",
+  "theme_color": "#071111"
+}

@@ -1,0 +1,32 @@
+{
+  "name": "tool-star-map",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A public curated tools directory built with React 18 and Vite.",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "vite build",
+    "preview": "vite preview --host 0.0.0.0",
+    "deploy:cloudflare": "npm run build && npx wrangler@3.114.14 pages deploy dist --project-name tool-star-map",
+    "deploy:cloudflare:latest": "npm run build && npx wrangler pages deploy dist --project-name tool-star-map",
+    "deploy:vercel": "npm run build && npx vercel --prod"
+  },
+  "keywords": [
+    "react",
+    "vite",
+    "tools",
+    "directory"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "lucide-react": "^1.17.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.7.0",
+    "vite": "^6.4.3"
+  }
+}
