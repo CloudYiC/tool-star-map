@@ -258,6 +258,22 @@ function App() {
               <p className={styles.eyebrow}>ENTERPRISE TOOL HUB</p>
               <h1>工具发射台</h1>
               <p>{siteConfig.tagline}</p>
+              <div className={styles.commandSearchRow}>
+                <div className={styles.searchBox}>
+                  <Search size={20} />
+                  <input
+                    type="search"
+                    value={query}
+                    onChange={(event) => setQuery(event.target.value)}
+                    placeholder="搜索工具 / 标签 / 使用场景"
+                    aria-label="搜索工具"
+                  />
+                </div>
+                <div className={styles.commandBadge} aria-hidden="true">
+                  <span>LIVE INDEX</span>
+                  <strong>{filteredTools.length}</strong>
+                </div>
+              </div>
             </div>
 
             <div className={styles.metricBoard} aria-label="站点统计">
@@ -267,23 +283,6 @@ function App() {
                   <span>{item.label}</span>
                 </div>
               ))}
-            </div>
-          </div>
-
-          <div className={styles.commandSearchRow}>
-            <div className={styles.searchBox}>
-              <Search size={20} />
-              <input
-                type="search"
-                value={query}
-                onChange={(event) => setQuery(event.target.value)}
-                placeholder="搜索工具 / 标签 / 使用场景"
-                aria-label="搜索工具"
-              />
-            </div>
-            <div className={styles.commandBadge} aria-hidden="true">
-              <span>LIVE INDEX</span>
-              <strong>{filteredTools.length}</strong>
             </div>
           </div>
 
@@ -522,17 +521,13 @@ function LaunchDialog({ tool, favorite, onFavorite, onCancel, onConfirm }: Launc
   return (
     <div className={cx(styles.dialogBackdrop, styles.launchBackdrop)} role="presentation" onMouseDown={onCancel}>
       <section
-        className={styles.launchDrawer}
+        className={styles.launchDialog}
         role="dialog"
         aria-modal="true"
         aria-labelledby="launch-title"
         onMouseDown={(event) => event.stopPropagation()}
       >
-        <div className={styles.drawerMascot} aria-hidden="true">
-          <div className={styles.mascotSign}>
-            <strong>确定要跳转吗？</strong>
-            <span>我先帮你确认一下目的地。</span>
-          </div>
+        <div className={styles.mascotScene} aria-hidden="true">
           <div className={styles.mascot}>
             <span className={styles.mascotHead} />
             <span className={styles.mascotBody} />
@@ -540,6 +535,10 @@ function LaunchDialog({ tool, favorite, onFavorite, onCancel, onConfirm }: Launc
             <span className={cx(styles.mascotArm, styles.right)} />
             <span className={cx(styles.mascotLeg, styles.left)} />
             <span className={cx(styles.mascotLeg, styles.right)} />
+          </div>
+          <div className={styles.mascotSign}>
+            <strong>确定要跳转吗？</strong>
+            <span>我先帮你确认一下目的地。</span>
           </div>
         </div>
 
